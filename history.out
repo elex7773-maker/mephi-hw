@@ -1,0 +1,36 @@
+    1  groupadd students
+    2  useradd -u 1234 -m -G studentsuser1 
+    3  useradd -u 1234 -m -G students user1
+    4  passwd user1
+    5  chage -M 90 user1
+    6  id user1
+    7  chage -l user1
+    8  find / -perm -4000 -type f 2>/dev/null
+    9  find / perm -4000 -type f 2>/dev/null > /root/setuid-files
+   10  find / -perm -4000 -type f 2>/dev/null > /root/setuid-files.out
+   11  rm /root/setuid-files
+   12  cat /root/setuid-files.out
+   13  ps -eo pid,ruid,euid,comm | awk 'NR==1 || ($2>=1000 && $3==0)'
+   14  su user1
+   15  cat /root/privproc.out
+   16  cp /usr/bin/cat/home/user1/mycat
+   17  cp /usr/bin/ cat /home/user1/mycat
+   18  cp /usr/bin/cat /home/user1/mycat
+   19  chown root:root /home/user1/mycat
+   20  chmod 4755 /home/user1/mycat
+   21  ls -l /home/user1/mycat
+   22  su - user1
+   23  cp /usr/bin/chown /home/user1/mychown
+   24  setcap cap_chown+ep /home/user1/mychown
+   25  getcap /home/user1/mychown
+   26  su - user1
+   27  echo 'user1 ALL=(ALL) /usr/bin/date, /usr/bin/timedatectl' > /etc/sudoers.d/user1-time
+   28  chmod 440 /etc/sudoers.d/user1-time
+   29  visudo -c
+   30  su - user1
+   31  history > /root/histiry.out
+   32  stat /home/user1 > /root/stat.out
+   33  stat /home/user1/mycat >> /root/stat.out
+   34  stat /home/user1/mychown >> /root/stat.out
+   35  getcap /home/user1/mychown > /root/getcap.out
+   36  history > /root/history.out
